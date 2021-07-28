@@ -2,7 +2,7 @@
  * @Author: mellow
  * @Date: 2021-06-15 16:20:10
  * @LastEditors: mellow
- * @LastEditTime: 2021-07-20 16:35:06
+ * @LastEditTime: 2021-07-28 11:06:13
  */
 
 
@@ -37,7 +37,7 @@ type SorB = string | boolean
 
 type TypeFn6<E> = E extends SorN ? E[] : string
 
-type TypeFn7 = SorB extends SorN ? SorB[] : string
+type TypeFn7<SorB> = SorB extends SorN ? SorB[] : string
 
 type Bo = TypeFn7<SorB>
 
