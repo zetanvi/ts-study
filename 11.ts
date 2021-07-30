@@ -2,7 +2,7 @@
  * @Author: mellow
  * @Date: 2021-07-28 14:20:18
  * @LastEditors: mellow
- * @LastEditTime: 2021-07-28 16:35:45
+ * @LastEditTime: 2021-07-29 15:17:43
  */
 
 {
@@ -77,4 +77,31 @@
 
   getSound(dog)
   getSound(cat)
+}
+
+
+// ts版本4.3.2之后已经可以使用下面的方法进行类型守卫判断了
+{
+  class Dog {
+    wang="wangwang"
+  }
+  class Cat {
+    miao="miaomiao"
+  }
+  interface Dog {
+    wang:string
+  }
+  interface Cat {
+    miao:string
+  }
+  const getName = <T extends Dog | Cat>(animal: T) => {
+    if ('wang' in animal) {
+      return animal.wang; // ts(2339)
+    }
+    return animal.miao; // ts(2339)
+  };
+  const dog = new Dog()
+  const cat = new Cat()
+  getName(dog)
+  getName(cat)
 }
