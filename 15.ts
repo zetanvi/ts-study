@@ -2,7 +2,7 @@
  * @Author: mellow
  * @Date: 2021-08-10 16:33:36
  * @LastEditors: mellow
- * @LastEditTime: 2021-08-12 17:32:59
+ * @LastEditTime: 2021-09-10 18:31:40
  */
 {
 
@@ -83,13 +83,13 @@
 
   // ! 泛型
   type isSubTyping<C,P> = C extends P ? true : false 
-  type s1 = isSubTyping<1,number>
-  type s2 = isSubTyping<number,1>
+  type s1 = isSubTyping<1,number> // true
+  type s2 = isSubTyping<number,1> // false
 
   // ! 条件类型
   type isAssertable<T,S> = T extends S ? true : S extends T ? true : false
-  type a1 = isAssertable<1,number>
-  type a2 = isAssertable<1,boolean>
+  type a1 = isAssertable<1,number> // true
+  type a2 = isAssertable<1,boolean> // false
 
   // ! 分配条件类型（分配式计算）
   type BooleanOrString = string | boolean
@@ -109,11 +109,22 @@
   // 1、never在泛型若以原子入参，则为false
   // 2、never在泛型若以整体入参，因为never 是所有类型的子类型所以为true
   type GetSNums = never extends number ? number[] : never extends string ? string[] : never  // number[]
-  type GetNeverArray = StringOrNumberArrayAll<never>
-  type GetNever = StringOrNumberArray<never>
-  
+  type GetNeverArray = StringOrNumberArrayAll<never> //never[]
+  type GetNever = StringOrNumberArray<never> // never
 
+  // !条件类型中的类型推断infer
+  type ElementTypeOfArray<T> = T extends (infer E)[] ? E extends number ? true : E : T
+  type isNumberArray = ElementTypeOfArray<number[]>
+  type isOnlyNumber = ElementTypeOfArray<string>
 
+  interface AA {
+    name:string
+    age:number
+    todo:string
+  }
+
+  type ElementTypeOfObj<T> = T extends {name:infer N,age:infer A} ? [N,A] : never
+  type GetNa = ElementTypeOfObj<AA>
 
 
 
