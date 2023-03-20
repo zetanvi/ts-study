@@ -127,7 +127,7 @@
   type GetNa = ElementTypeOfObj<AA>
 
 
-
+  const vd = 2
 
 
 

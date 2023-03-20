@@ -10,4 +10,3 @@ function say(word:string) {
 say('hello world')
 
 
-

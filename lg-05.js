@@ -74,9 +74,15 @@ promise.then(
 
 
 
+async function afn (){
+  console.log('------')
+  const a = await console.log('console')
+  console.log('++++++')
+}
 
 // 时间循环
 console.log(111)
+afn()
 setTimeout(()=>{
   console.log(222)
   setTimeout(() => {
